@@ -1,0 +1,8 @@
+.venv/
+.venv_mac_backup/
+__pycache__/
+*.pyc
+.env
+.streamlit/credentials.toml
+.streamlit/secrets.toml
+.DS_Store

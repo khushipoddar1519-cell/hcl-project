@@ -1,0 +1,79 @@
+{
+  "khushi": {
+    "name": "Khushi Poddar",
+    "email": "khushi@hotelanalytics.com",
+    "role": "User",
+    "salt": "5585a145d1c24c46",
+    "hash": "8ac782c510d3a7982c8c47cf851e6f601e564076ad0cdfacdd3538074fffa8e4"
+  },
+  "admin": {
+    "name": "Admin",
+    "email": "admin@hotelanalytics.com",
+    "role": "Administrator",
+    "salt": "dd6482dd1084931c",
+    "hash": "e34383e269efa2c801e6eef931f1ae6fcaed320ccd2a1028ced81ec026ff5c57"
+  },
+  "manager": {
+    "name": "Hotel Manager",
+    "email": "manager@hotelanalytics.com",
+    "role": "User",
+    "salt": "310465011f55c458",
+    "hash": "c32b7f3cb6066e2629ccc1b8b628ecda1cc27170053b2c29da7885ebb5c575b8"
+  },
+  "analyst": {
+    "name": "Revenue Analyst",
+    "email": "analyst@hotelanalytics.com",
+    "role": "User",
+    "salt": "4fb46d90efb33d0f",
+    "hash": "0a95b808bc1e02d1ad11ebf093c89a2ea8831b1ab308ea0be01855babe268c1c"
+  },
+  "vikram": {
+    "name": "Vikram Malhotra",
+    "email": "vikram@luxuryhotels.com",
+    "role": "User",
+    "salt": "b83b9da78e53d14e",
+    "hash": "6922622b4c93726e946f72602a4d068b02822c26bc6e6a377283247686eb1376"
+  },
+  "ananya": {
+    "name": "Ananya Roy",
+    "email": "ananya@hotel.com",
+    "role": "User",
+    "salt": "3df6b4a43a95f012",
+    "hash": "6a3620f434c864f84b93082a1c9bd6364b19ecdd7310ec01dc9c8d7fc2f8f9d2"
+  },
+  "luv": {
+    "name": "luven",
+    "email": "luven@gmail.com",
+    "role": "Administrator",
+    "salt": "6cb384ebfd4440fb",
+    "hash": "841f3bf40b61eaf5cad22a8639109307627eb5bdaa18d2e020b1cffc3a06f369"
+  },
+  "user_1244ad": {
+    "name": "New User Test",
+    "email": "user_1244ad@hotel.com",
+    "role": "User",
+    "salt": "7ccff895c748af6c",
+    "hash": "2abc1a91d8f388e8b9d6e0e63d5dd933f56fc6996925156c3757a952c61db660"
+  },
+  "khushipo": {
+    "name": "Khushi Poddar",
+    "email": "khushi@gmail.com",
+    "role": "User",
+    "salt": "0e165ed0e9b879c8",
+    "hash": "36a01591cb697a0b368447419ba8eea7761ad6f2f611a4580b80666e1023daa4"
+  },
+  "khushipoddar": {
+    "name": "khushi",
+    "email": "khushipoddar1519@gmail.com",
+    "role": "User",
+    "salt": "ad3f6a0e15024f5f",
+    "hash": "ff5030c2779035a027e61a996c530ecc8cc404c75450461266e4e1b8fdaf3d36"
+  },
+  "poddar": {
+    "name": "khushi",
+    "email": "khushipoddar1519@gmail.com",
+    "role": "User",
+    "salt": "2234cddce6abdd39",
+    "hash": "528b09bcf20cc2a379fdb5dd5a18e1e9e219e17f1dbcf343a42fdda0fee0154e"
+  }
+}

@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Analytics – Revenue & Cancellation Intelligence</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+  <link rel="apple-touch-icon" href="/static/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+  <!-- =========================================================================
+       1. DYNAMIC PUBLIC LANDING PAGE (Sign In & Sign Up Gateway)
+  ========================================================================== -->
+  <div id="landing-page" class="landing-page-wrap">
+    <!-- Interactive Dynamic Particles Background -->
+    <canvas id="hero-particles"></canvas>
+
+    <!-- Top Landing Navigation -->
+    <header class="landing-nav">
+      <div class="landing-brand">
+        <div class="brand-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 21h20"/>
+            <path d="M12 2l7 4v15H5V6l7-4z"/>
+            <path d="M9 10h1M14 10h1M9 14h1M14 14h1"/>
+            <path d="M9 21v-3a3 3 0 0 1 6 0v3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">Hotel Analytics</div>
+          <div class="brand-sub">Revenue & AI Suite</div>
+        </div>
+      </div>
+
+      <nav class="landing-nav-links">
+        <a href="#landing-features" class="landing-nav-link">Features</a>
+        <a href="#landing-metrics" class="landing-nav-link">Metrics</a>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="focusAuthTab('signin')">Sign In</button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="focusAuthTab('signup')">Sign Up</button>
+      </nav>
+    </header>
+
+    <!-- Dynamic Hero Section -->
+    <section class="landing-hero">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <div class="hero-pill-dot"></div>
+          <span>Machine Learning Revenue Intelligence</span>
+        </div>
+
+        <h1 class="hero-title">
+          Predict Cancellations.<br>
+          <span class="hero-title-highlight">Protect Revenue.</span>
+        </h1>
+
+        <p class="hero-description">
+          Real-time cancellation risk scoring, demand forecasting, and dynamic revenue analytics for hotel reservations.
+        </p>
+
+        <div class="hero-btn-row">
+          <button type="button" class="btn btn-primary" onclick="focusAuthTab('signup')">
+            Get Started (Sign Up) →
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="focusAuthTab('signin')">
+            Sign In to Dashboard
+          </button>
+        </div>
+
+        <div id="landing-metrics" class="hero-stats-row">
+          <div class="hero-stat-item">
+            <span id="stat-bookings" class="hero-stat-num">119,390</span>
+            <span class="hero-stat-label">Bookings</span>
+          </div>
+          <div class="hero-stat-item">
+            <span id="stat-acc" class="hero-stat-num">86.9%</span>
+            <span class="hero-stat-label">Accuracy</span>
+          </div>
+          <div class="hero-stat-item">
+            <span id="stat-auc" class="hero-stat-num">0.944</span>
+            <span class="hero-stat-label">ROC-AUC</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Right: Dynamic Auth Box -->
+      <div id="landing-auth-card" class="landing-auth-card">
+        <div style="text-align:center; margin-bottom:16px;">
+          <h3 style="font-size:1.3rem; font-weight:700; color:#fff;">Welcome</h3>
+          <p style="font-size:0.84rem; color:var(--text-secondary); margin-top:2px;">Sign in or sign up to enter the website</p>
+        </div>
+
+        <!-- Dynamic Animated Toggle -->
+        <div class="auth-toggle-bar">
+          <button id="hero-tab-signin" type="button" class="auth-toggle-btn active" onclick="focusAuthTab('signin')">
+            Sign In
+          </button>
+          <button id="hero-tab-signup" type="button" class="auth-toggle-btn" onclick="focusAuthTab('signup')">
+            Create Account
+          </button>
+        </div>
+
+        <!-- Panel 1: Sign In -->
+        <div id="hero-panel-signin">
+          <form id="hero-login-form">
+            <div class="form-group" style="margin-bottom:12px;">
+              <label class="form-label">Username or Email</label>
+              <input id="hl-ident" type="text" class="form-control" placeholder="Enter username or email" required>
+            </div>
+            <div class="form-group" style="margin-bottom:18px;">
+              <label class="form-label">Password</label>
+              <input id="hl-pwd" type="password" class="form-control" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; font-size:0.95rem; padding:12px;">
+              Sign In →
+            </button>
+          </form>
+        </div>
+
+        <!-- Panel 2: Create Account -->
+        <div id="hero-panel-signup" style="display:none;">
+          <form id="hero-signup-form">
+            <div class="form-group" style="margin-bottom:10px;">
+              <label class="form-label">Full Name</label>
+              <input id="hsu-name" type="text" class="form-control" placeholder="e.g. Alex Morgan" required>
+            </div>
+            <div class="form-group" style="margin-bottom:10px;">
+              <label class="form-label">Email</label>
+              <input id="hsu-email" type="email" class="form-control" placeholder="e.g. alex@hotel.com" required>
+            </div>
+            <div class="form-group" style="margin-bottom:10px;">
+              <label class="form-label">Username</label>
+              <input id="hsu-username" type="text" class="form-control" placeholder="e.g. amorgan" required>
+            </div>
+            <div class="form-group" style="margin-bottom:10px;">
+              <label class="form-label">Role</label>
+              <select id="hsu-role" class="form-control">
+                <option value="User">User</option>
+                <option value="Administrator">Administrator</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:16px;">
+              <label class="form-label">Password (Min. 4 characters)</label>
+              <input id="hsu-pwd" type="password" class="form-control" placeholder="Create password" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%; font-size:0.95rem; padding:12px;">
+              Create Account & Enter →
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature Showcase Section -->
+    <section id="landing-features" class="landing-features-section">
+      <div class="features-header">
+        <h2 class="features-section-title">Core Capabilities</h2>
+        <p class="features-section-sub">Simple, actionable tools to manage reservations and maximize revenue.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-box-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
+          <h3 class="feature-box-title">Risk Prediction</h3>
+          <p class="feature-box-desc">Instant cancellation probability calculation for every new reservation before confirmation.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-box-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          </div>
+          <h3 class="feature-box-title">Executive Dashboard</h3>
+          <p class="feature-box-desc">Track Bookings, Cancellation Rate, Net Revenue, and ADR in real time with trend charts.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-box-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg>
+          </div>
+          <h3 class="feature-box-title">Demand Forecast</h3>
+          <p class="feature-box-desc">Seasonality and occupancy forecasts up to 12 months ahead with confidence intervals.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-box-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3 class="feature-box-title">Revenue Recovery</h3>
+          <p class="feature-box-desc">Simulate how reducing cancellations in high-risk segments directly boosts net revenue.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+      <div>Hotel Analytics Suite • 119,390 Bookings • Machine Learning Engine</div>
+    </footer>
+  </div>
+
+  <!-- =========================================================================
+       2. INTERNAL WEB APPLICATION (Activated upon Login/Sign Up)
+  ========================================================================== -->
+  <div id="app-layout" class="app-layout" style="display:none;">
+    <!-- Mobile Backdrop Overlay -->
+    <div id="mobile-nav-backdrop" class="mobile-nav-backdrop"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="app-sidebar" class="sidebar">
+      <div class="brand-section">
+        <div class="brand-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 21h20"/>
+            <path d="M12 2l7 4v15H5V6l7-4z"/>
+            <path d="M9 10h1M14 10h1M9 14h1M14 14h1"/>
+            <path d="M9 21v-3a3 3 0 0 1 6 0v3"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">Hotel Analytics</div>
+          <div class="brand-sub">Revenue & AI Suite</div>
+        </div>
+        <button id="mobile-sidebar-close" class="mobile-sidebar-close" aria-label="Close Navigation">✕</button>
+      </div>
+
+      <nav class="nav-menu">
+        <a class="nav-item active" data-view="dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item" data-view="predictor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          <span>Add Booking & Risk</span>
+        </a>
+        <a class="nav-item" data-view="cancellation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          <span>Cancellation Analysis</span>
+        </a>
+        <a class="nav-item" data-view="forecasting">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg>
+          <span>Demand Forecasting</span>
+        </a>
+        <a class="nav-item" data-view="revenue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>Revenue Optimizer</span>
+        </a>
+        <a class="nav-item" data-view="bookings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M9 14h6M9 18h6M9 10h6"/></svg>
+          <span>Bookings Database</span>
+        </a>
+        <a class="nav-item" data-view="reports">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          <span>Reports & Export</span>
+        </a>
+        <a class="nav-item admin-only" data-view="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Admin & ML Model</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="dataset-pill" style="margin-bottom:10px;">
+          <div class="dataset-dot"></div>
+          <div>
+            <div style="color:#fff; font-weight:600;">119,390 Bookings</div>
+            <div style="color:#94a3b8; font-size:11px;">Jul 2015 – Aug 2017</div>
+          </div>
+        </div>
+        <button id="sidebar-logout-btn" class="btn btn-secondary btn-sm" style="width:100%; font-size:12px;">
+          🚪 Sign Out to Landing Page
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <button id="mobile-menu-toggle" type="button" class="mobile-menu-btn" aria-label="Open Navigation Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+
+          <div class="topbar-filters-wrap">
+            <span class="filters-label">Filters:</span>
+            <select id="global-hotel-filter" class="filter-select">
+              <option value="All">All Hotels (City & Resort)</option>
+              <option value="City Hotel">City Hotel</option>
+              <option value="Resort Hotel">Resort Hotel</option>
+            </select>
+            <select id="global-range-filter" class="filter-select">
+              <option value="12m">Last 12 Months (Default)</option>
+              <option value="2017">Year 2017</option>
+              <option value="2016">Year 2016</option>
+              <option value="all">Full Dataset (2015–2017)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="topbar-controls">
+          <div class="user-menu-wrap">
+            <div id="user-menu-btn" class="user-badge" title="Click to view profile or sign out">
+              <div id="topbar-user-avatar" class="user-avatar">👤</div>
+              <div class="user-details">
+                <span id="topbar-user-name" class="user-name">Sign In / Register</span>
+                <span id="topbar-user-role" class="user-role">Guest</span>
+              </div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+
+            <!-- Dropdown Menu under the user -->
+            <div id="user-dropdown-menu" class="user-dropdown">
+              <div class="user-dropdown-header">
+                <div id="dropdown-user-avatar" class="user-avatar">👤</div>
+                <div style="overflow:hidden;">
+                  <div id="dropdown-user-name" style="font-weight:700; color:#fff; font-size:13px; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;">Guest</div>
+                  <div id="dropdown-user-role" style="font-size:11px; color:var(--primary); text-transform:uppercase; letter-spacing:0.04em;">Guest</div>
+                </div>
+              </div>
+              <button id="dropdown-logout-btn" type="button" class="user-dropdown-item danger">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                <span>🚪 Logout</span>
+              </button>
+              <div class="user-dropdown-divider"></div>
+              <button id="dropdown-switch-btn" type="button" class="user-dropdown-item">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>Login Another Account</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- View Containers -->
+      <main class="content-body">
+        <!-- 1. DASHBOARD VIEW -->
+        <section id="view-dashboard" class="view-section active">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Executive Dashboard</h1>
+              <p class="page-subtitle">Overview of hotel bookings, revenue, and cancellations.</p>
+            </div>
+          </div>
+
+          <!-- KPI Grid -->
+          <div class="kpi-grid">
+            <div class="kpi-card teal">
+              <div class="kpi-header">
+                <span class="kpi-label">Total Bookings</span>
+                <div class="kpi-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf"><rect width="18" height="18" x="3" y="4" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+              </div>
+              <div id="kpi-bookings" class="kpi-value">-</div>
+              <div id="delta-bookings" class="kpi-delta neutral">Loading...</div>
+            </div>
+
+            <div class="kpi-card rose">
+              <div class="kpi-header">
+                <span class="kpi-label">Cancellation Rate</span>
+                <div class="kpi-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fb7185"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+              </div>
+              <div id="kpi-cancel-rate" class="kpi-value">-</div>
+              <div id="delta-cancel-rate" class="kpi-delta neutral">Loading...</div>
+            </div>
+
+            <div class="kpi-card purple">
+              <div class="kpi-header">
+                <span class="kpi-label">Net Revenue</span>
+                <div class="kpi-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c084fc"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg></div>
+              </div>
+              <div id="kpi-revenue" class="kpi-value">-</div>
+              <div id="delta-revenue" class="kpi-delta neutral">Loading...</div>
+            </div>
+
+            <div class="kpi-card amber">
+              <div class="kpi-header">
+                <span class="kpi-label">Avg Daily Rate (ADR)</span>
+                <div class="kpi-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fcd34d"><path d="M3 3v18h18"/><path d="M8 17v-6M13 17V6M18 17v-9"/></svg></div>
+              </div>
+              <div id="kpi-adr" class="kpi-value">-</div>
+              <div id="delta-adr" class="kpi-delta neutral">Loading...</div>
+            </div>
+          </div>
+
+          <!-- Trend Chart -->
+          <div class="dashboard-card" style="margin-bottom:24px;">
+            <div class="card-title-wrap">
+              <div>
+                <h3 class="card-title">Bookings & Cancellations</h3>
+                <span class="card-subtitle">Monthly volume comparison</span>
+              </div>
+            </div>
+            <div id="chart-trend-container" class="chart-container"></div>
+          </div>
+
+          <!-- Middle Split: Rooms & Top Segments -->
+          <div class="grid-2">
+            <div class="dashboard-card">
+              <div class="card-title-wrap">
+                <div>
+                  <h3 class="card-title">Revenue by Room Category</h3>
+                  <span class="card-subtitle">Share by room category</span>
+                </div>
+              </div>
+              <div id="chart-room-container" class="chart-container"></div>
+            </div>
+
+            <div class="dashboard-card">
+              <div class="card-title-wrap">
+                <div>
+                  <h3 class="card-title">Top Market Segments</h3>
+                  <span class="card-subtitle">Performance by channel</span>
+                </div>
+              </div>
+              <div class="data-table-wrap">
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th>Segment</th>
+                      <th>Bookings</th>
+                      <th>Cancel %</th>
+                      <th>Revenue</th>
+                      <th>Share</th>
+                    </tr>
+                  </thead>
+                  <tbody id="top-segments-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Auto Insights -->
+          <div class="dashboard-card">
+            <div class="card-title-wrap">
+              <h3 class="card-title">Key Insights & Alerts</h3>
+            </div>
+            <div id="insights-container"></div>
+          </div>
+        </section>
+
+        <!-- 2. RISK PREDICTOR & BOOKING STUDIO -->
+        <section id="view-predictor" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Cancellation Risk Calculator</h1>
+              <p class="page-subtitle">Calculate cancellation probability for any reservation.</p>
+            </div>
+          </div>
+
+          <div class="predictor-layout">
+            <!-- Left: Form -->
+            <div class="dashboard-card">
+              <div class="card-title-wrap">
+                <h3 class="card-title">Reservation Details</h3>
+                <span class="card-subtitle">Enter booking details</span>
+              </div>
+
+              <form id="booking-predict-form">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label class="form-label">Guest Full Name</label>
+                    <input id="bf-guest-name" type="text" class="form-control" value="Aarav Sharma" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Property</label>
+                    <select id="bf-hotel" class="form-control">
+                      <option value="City Hotel">City Hotel</option>
+                      <option value="Resort Hotel">Resort Hotel</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Lead Time (Days ahead)</label>
+                    <input id="bf-lead-time" type="number" class="form-control" value="45" min="0" max="730">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Arrival Month</label>
+                    <select id="bf-month" class="form-control">
+                      <option value="August" selected>August</option>
+                      <option value="September">September</option>
+                      <option value="October">October</option>
+                      <option value="November">November</option>
+                      <option value="December">December</option>
+                      <option value="January">January</option>
+                      <option value="February">February</option>
+                      <option value="March">March</option>
+                      <option value="April">April</option>
+                      <option value="May">May</option>
+                      <option value="June">June</option>
+                      <option value="July">July</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Arrival Day</label>
+                    <input id="bf-day" type="number" class="form-control" value="15" min="1" max="31">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Market Segment</label>
+                    <select id="bf-segment" class="form-control">
+                      <option value="Online TA" selected>Online Travel Agency</option>
+                      <option value="Offline TA/TO">Travel Agent / Tour Operator</option>
+                      <option value="Direct">Direct Booking</option>
+                      <option value="Corporate">Corporate</option>
+                      <option value="Groups">Groups</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Deposit Type</label>
+                    <select id="bf-deposit" class="form-control">
+                      <option value="No Deposit" selected>No Deposit</option>
+                      <option value="Non Refund">Non Refundable</option>
+                      <option value="Refundable">Refundable</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Room Type</label>
+                    <select id="bf-room" class="form-control">
+                      <option value="A" selected>A – Standard</option>
+                      <option value="D">D – Deluxe</option>
+                      <option value="E">E – Suite</option>
+                      <option value="G">G – Family</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">ADR Rate (₹ / night)</label>
+                    <input id="bf-adr" type="number" class="form-control" value="6500" min="500" max="50000" step="100">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Weekend Nights</label>
+                    <input id="bf-we-nights" type="number" class="form-control" value="1" min="0" max="10">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Week Nights</label>
+                    <input id="bf-wk-nights" type="number" class="form-control" value="2" min="0" max="30">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Adults / Children</label>
+                    <div style="display:flex; gap:8px;">
+                      <input id="bf-adults" type="number" class="form-control" value="2" min="1" max="6" title="Adults">
+                      <input id="bf-children" type="number" class="form-control" value="0" min="0" max="5" title="Children">
+                    </div>
+                  </div>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-color); border-radius:12px; padding:16px; margin-bottom:20px;">
+                  <div style="font-weight:600; font-size:13px; color:#fff; margin-bottom:12px;">Guest History & Engagement</div>
+                  <div class="form-grid" style="margin-bottom:0;">
+                    <div class="form-group">
+                      <label class="form-label">Special Requests</label>
+                      <input id="bf-requests" type="number" class="form-control" value="1" min="0" max="5">
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label">Previous Cancellations</label>
+                      <input id="bf-prev-canc" type="number" class="form-control" value="0" min="0" max="20">
+                    </div>
+                    <div class="form-group" style="justify-content:center;">
+                      <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:13px; margin-top:14px;">
+                        <input id="bf-repeat" type="checkbox" style="width:16px; height:16px;">
+                        <span>Repeat Guest (Loyalty)</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width:100%;">
+                  💾 Save Reservation to Database
+                </button>
+              </form>
+            </div>
+
+            <!-- Right: Live Prediction Score -->
+            <div style="display:flex; flex-direction:column; gap:20px;">
+              <!-- Radial Gauge -->
+              <div class="dashboard-card gauge-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                  <span style="font-size:12px; font-weight:600; color:#94a3b8; text-transform:uppercase;">ML Risk Score</span>
+                  <span id="risk-level-badge" class="badge badge-medium">Medium Risk</span>
+                </div>
+                <div id="gauge-container"></div>
+                <div style="display:flex; justify-content:space-around; border-top:1px solid var(--border-color); padding-top:14px; margin-top:10px;">
+                  <div>
+                    <div style="font-size:11px; color:#94a3b8;">Revenue at Risk</div>
+                    <div id="revenue-at-risk" style="font-size:16px; font-weight:700; color:#fb7185;">₹ 0</div>
+                  </div>
+                  <div>
+                    <div style="font-size:11px; color:#94a3b8;">ML Model</div>
+                    <div style="font-size:14px; font-weight:600; color:#2dd4bf;">HistGradBoost</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Risk Drivers -->
+              <div class="dashboard-card">
+                <div class="card-title-wrap">
+                  <h3 class="card-title">🔍 What Drives This Score</h3>
+                </div>
+                <div id="drivers-container"></div>
+              </div>
+
+              <!-- Mitigation Strategies -->
+              <div class="dashboard-card">
+                <div class="card-title-wrap">
+                  <h3 class="card-title">🛡️ Recommended Actions</h3>
+                </div>
+                <div id="recommendations-container" class="rec-list"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. CANCELLATION DEEP DIVE -->
+        <section id="view-cancellation" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Cancellation Analysis</h1>
+              <p class="page-subtitle">Breakdown by lead time, deposit policy, and guest country.</p>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="dashboard-card">
+              <div class="card-title-wrap">
+                <h3 class="card-title">Lead Time Impact</h3>
+                <span class="card-subtitle">Cancel rate by booking lead time</span>
+              </div>
+              <div id="lead-time-bars"></div>
+            </div>
+
+            <div class="dashboard-card">
+              <div class="card-title-wrap">
+                <h3 class="card-title">Deposit Policy Impact</h3>
+                <span class="card-subtitle">Cancel rate by deposit type</span>
+              </div>
+              <div id="deposit-types-bars"></div>
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <div class="card-title-wrap">
+              <h3 class="card-title">Top Guest Countries</h3>
+              <span class="card-subtitle">Bookings and cancel rate by origin</span>
+            </div>
+            <div class="data-table-wrap">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Country</th>
+                    <th>Bookings</th>
+                    <th>Cancellation Rate</th>
+                    <th>Net Revenue</th>
+                  </tr>
+                </thead>
+                <tbody id="country-risk-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. DEMAND FORECASTING -->
+        <section id="view-forecasting" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Demand Forecast</h1>
+              <p class="page-subtitle">Monthly projections and seasonal multipliers.</p>
+            </div>
+            <div style="display:flex; gap:12px;">
+              <select id="fc-metric-select" class="filter-select">
+                <option value="net_bookings">Net Bookings</option>
+                <option value="revenue">Total Revenue (₹)</option>
+                <option value="adr">ADR (₹)</option>
+                <option value="cancelled">Cancellations</option>
+              </select>
+              <select id="fc-horizon-select" class="filter-select">
+                <option value="3">3 Months</option>
+                <option value="6" selected>6 Months</option>
+                <option value="12">12 Months</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Scenario Simulation Slider -->
+          <div class="dashboard-card" style="margin-bottom:20px; background:rgba(15,157,146,0.06); border-color:rgba(15,157,146,0.25);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span style="font-size:13px; font-weight:600; color:#fff;">Scenario Simulation</span>
+              <span id="fc-scenario-val" style="font-weight:700; color:#2dd4bf; font-size:14px;">0%</span>
+            </div>
+            <input id="fc-scenario-slider" type="range" min="-30" max="30" value="0" step="5" style="width:100%; accent-color:var(--primary);">
+            <div style="display:flex; justify-content:space-between; font-size:11px; color:#94a3b8; margin-top:4px;">
+              <span>-30% Downturn</span>
+              <span>Baseline (0%)</span>
+              <span>+30% Growth</span>
+            </div>
+          </div>
+
+          <div class="dashboard-card" style="margin-bottom:24px;">
+            <div class="card-title-wrap">
+              <h3 class="card-title">Forecast & Confidence Range</h3>
+            </div>
+            <div id="chart-forecast-container" class="chart-container"></div>
+          </div>
+
+          <!-- Monthly Seasonal Index Grid -->
+          <div class="dashboard-card">
+            <div class="card-title-wrap">
+              <h3 class="card-title">Seasonality Index</h3>
+              <span class="card-subtitle">Monthly demand multipliers (>1.0 = peak season)</span>
+            </div>
+            <div id="seasonal-index-container" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(75px, 1fr)); gap:10px;"></div>
+          </div>
+        </section>
+
+        <!-- 5. REVENUE OPTIMIZER -->
+        <section id="view-revenue" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Revenue Simulator</h1>
+              <p class="page-subtitle">Simulate revenue gained from reducing cancellations.</p>
+            </div>
+          </div>
+
+          <div class="dashboard-card" style="margin-bottom:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <div>
+                <h3 class="card-title">Cancellation Reduction Goal</h3>
+                <span class="card-subtitle">Select target reduction percentage</span>
+              </div>
+              <span id="rev-reduc-val" style="font-size:20px; font-weight:800; color:#10b981;">20%</span>
+            </div>
+            <input id="rev-reduc-slider" type="range" min="5" max="50" value="20" step="5" style="width:100%; accent-color:#10b981;">
+          </div>
+
+          <div class="dashboard-card">
+            <div class="card-title-wrap">
+              <h3 class="card-title">Revenue Recovery by Segment</h3>
+              <div id="rev-sim-total-uplift" style="font-size:15px; font-weight:700; color:#10b981;">-</div>
+            </div>
+            <div class="data-table-wrap">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Market Segment</th>
+                    <th>Current Revenue</th>
+                    <th>Cancel Rate</th>
+                    <th>Projected Revenue Recovery</th>
+                  </tr>
+                </thead>
+                <tbody id="rev-sim-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. BOOKINGS DATABASE -->
+        <section id="view-bookings" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Bookings</h1>
+              <p class="page-subtitle">Search and manage reservations.</p>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="navigateTo('predictor')">+ Add Booking</button>
+          </div>
+
+          <div class="dashboard-card">
+            <div style="display:flex; gap:14px; margin-bottom:18px; flex-wrap:wrap; align-items:center;">
+              <input id="booking-search" type="text" class="form-control" placeholder="Search by guest, ID, or country..." style="max-width:320px;">
+              <select id="booking-filter-hotel" class="filter-select">
+                <option value="All">All Hotels</option>
+                <option value="City Hotel">City Hotel</option>
+                <option value="Resort Hotel">Resort Hotel</option>
+              </select>
+              <select id="booking-filter-status" class="filter-select">
+                <option value="All">All Statuses</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Check-Out">Check-Out</option>
+                <option value="Canceled">Canceled</option>
+              </select>
+              <span id="bookings-count-label" style="font-size:12px; color:#94a3b8; margin-left:auto;"></span>
+            </div>
+
+            <div class="data-table-wrap">
+              <table class="custom-table">
+                <thead>
+                  <tr>
+                    <th>Booking ID</th>
+                    <th>Guest Name</th>
+                    <th>Hotel</th>
+                    <th>Arrival</th>
+                    <th>Room</th>
+                    <th>Revenue</th>
+                    <th>Status</th>
+                    <th>AI Risk</th>
+                  </tr>
+                </thead>
+                <tbody id="bookings-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. REPORTS & EXPORT -->
+        <section id="view-reports" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Reports</h1>
+              <p class="page-subtitle">Download clean CSV summaries.</p>
+            </div>
+          </div>
+
+          <div class="grid-3">
+            <div class="dashboard-card">
+              <h3 class="card-title">📑 Reservations</h3>
+              <p class="card-subtitle" style="margin:8px 0 16px 0;">Booking details and cancellation status.</p>
+              <a href="/api/reports/export?dataset=bookings" download class="btn btn-secondary btn-sm" style="width:100%;">
+                Download Bookings CSV
+              </a>
+            </div>
+
+            <div class="dashboard-card">
+              <h3 class="card-title">📊 Monthly Financials</h3>
+              <p class="card-subtitle" style="margin:8px 0 16px 0;">Monthly revenue, ADR, and volume history.</p>
+              <a href="/api/reports/export?dataset=monthly" download class="btn btn-secondary btn-sm" style="width:100%;">
+                Download Monthly CSV
+              </a>
+            </div>
+
+            <div class="dashboard-card">
+              <h3 class="card-title">🌐 Market Segments</h3>
+              <p class="card-subtitle" style="margin:8px 0 16px 0;">Segment performance and cancellation rate.</p>
+              <a href="/api/reports/export?dataset=segments" download class="btn btn-secondary btn-sm" style="width:100%;">
+                Download Segments CSV
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. SETTINGS & ML DIAGNOSTICS -->
+        <section id="view-settings" class="view-section">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title">Settings & ML Diagnostics</h1>
+              <p class="page-subtitle">Model diagnostics and team accounts.</p>
+            </div>
+            <button id="retrain-model-btn" class="btn btn-primary">Retrain ML Model</button>
+          </div>
+
+          <div class="kpi-grid">
+            <div class="kpi-card teal">
+              <div class="kpi-label">Model Accuracy</div>
+              <div id="diag-accuracy" class="kpi-value">-</div>
+              <div class="kpi-delta up">Holdout test set</div>
+            </div>
+            <div class="kpi-card purple">
+              <div class="kpi-label">ROC-AUC Score</div>
+              <div id="diag-auc" class="kpi-value">-</div>
+              <div class="kpi-delta up">High discrimination</div>
+            </div>
+            <div class="kpi-card amber">
+              <div class="kpi-label">Precision / Recall</div>
+              <div class="kpi-value" style="font-size:1.4rem;">
+                <span id="diag-precision">-</span> / <span id="diag-recall">-</span>
+              </div>
+              <div class="kpi-delta neutral">Balanced metrics</div>
+            </div>
+            <div class="kpi-card teal">
+              <div class="kpi-label">Training Size</div>
+              <div id="diag-rows" class="kpi-value">-</div>
+              <div id="diag-trained-at" class="kpi-delta neutral">-</div>
+            </div>
+          </div>
+
+          <div class="dashboard-card" style="margin-bottom:24px;">
+            <div class="card-title-wrap">
+              <h3 class="card-title">Top Permutation Feature Importance</h3>
+              <span class="card-subtitle">Permutation importance score on the 20% holdout test set</span>
+            </div>
+            <div id="diag-features-container"></div>
+          </div>
+
+          <!-- User Management (Admin Only) -->
+          <div class="dashboard-card">
+            <div class="card-title-wrap">
+              <div>
+                <h3 class="card-title">👥 User Accounts & Access Management</h3>
+                <span class="card-subtitle">Manage system users, roles, and credentials</span>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1.4fr 1fr; gap:24px;">
+              <div class="data-table-wrap">
+                <table class="custom-table">
+                  <thead>
+                    <tr>
+                      <th>Username</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>Role</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="settings-users-tbody"></tbody>
+                </table>
+              </div>
+
+              <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border-color); border-radius:12px; padding:18px;">
+                <h4 style="font-size:14px; color:#fff; margin-bottom:12px;">Add New User</h4>
+                <form id="admin-add-user-form">
+                  <div class="form-group" style="margin-bottom:10px;">
+                    <label class="form-label">Username</label>
+                    <input id="au-username" type="text" class="form-control" placeholder="e.g. rahul" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom:10px;">
+                    <label class="form-label">Full Name</label>
+                    <input id="au-name" type="text" class="form-control" placeholder="e.g. Rahul Verma" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom:10px;">
+                    <label class="form-label">Email</label>
+                    <input id="au-email" type="email" class="form-control" placeholder="e.g. rahul@hotel.com" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom:10px;">
+                    <label class="form-label">Role</label>
+                    <select id="au-role" class="form-control">
+                      <option value="User">User (Analyst)</option>
+                      <option value="Administrator">Administrator</option>
+                    </select>
+                  </div>
+                  <div class="form-group" style="margin-bottom:16px;">
+                    <label class="form-label">Password</label>
+                    <input id="au-pwd" type="password" class="form-control" placeholder="Min 4 characters" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">Create Account</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Login & Switch Account Modal -->
+  <div id="login-modal" class="modal-overlay">
+    <div class="modal-box" style="max-width:520px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="font-size:1.25rem; font-weight:700; color:#fff;">User Account & Access</h3>
+        <button id="modal-close-btn" style="background:none; border:none; color:#94a3b8; font-size:22px; cursor:pointer;">✕</button>
+      </div>
+
+      <!-- Current Logged In Banner with prominent Logout Option -->
+      <div id="modal-current-user-banner" class="modal-user-banner" style="display:none;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div id="modal-user-avatar" class="user-avatar">👤</div>
+          <div>
+            <div style="font-size:10.5px; color:#94a3b8; text-transform:uppercase; letter-spacing:0.04em;">Signed In As</div>
+            <div id="modal-user-name" style="font-size:14px; font-weight:700; color:#fff;">User Name</div>
+            <div id="modal-user-role" style="font-size:11px; color:var(--primary); font-weight:600;">Role</div>
+          </div>
+        </div>
+        <button id="modal-logout-btn" type="button" class="btn btn-secondary btn-sm" style="color:#fb7185; border-color:rgba(251,113,133,0.35); font-weight:600;">
+          🚪 Logout
+        </button>
+      </div>
+
+      <div id="modal-switch-prompt" style="font-size:11.5px; font-weight:600; color:#94a3b8; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.04em; display:none;">
+        Or login another account:
+      </div>
+
+      <!-- Auth Tabs: Sign In vs Sign Up -->
+      <div style="display:flex; gap:10px; margin-bottom:18px; border-bottom:1px solid var(--border-color); padding-bottom:8px;">
+        <button id="tab-btn-signin" class="btn btn-sm btn-primary" style="flex:1;">
+          🔑 Sign In
+        </button>
+        <button id="tab-btn-signup" class="btn btn-sm btn-secondary" style="flex:1;">
+          ✨ Create New Account
+        </button>
+      </div>
+
+      <!-- Tab 1: Sign In -->
+      <div id="auth-panel-signin">
+        <form id="login-form">
+          <div class="form-group" style="margin-bottom:12px;">
+            <label class="form-label">Username or Email</label>
+            <input id="login-ident" type="text" class="form-control" placeholder="Enter username or email" required>
+          </div>
+          <div class="form-group" style="margin-bottom:18px;">
+            <label class="form-label">Password</label>
+            <input id="login-pwd" type="password" class="form-control" placeholder="Enter password" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Sign In</button>
+        </form>
+      </div>
+
+      <!-- Tab 2: Create Account (Sign Up) -->
+      <div id="auth-panel-signup" style="display:none;">
+        <div style="font-size:12.5px; color:#94a3b8; margin-bottom:14px;">
+          Create a new user account to access the analytics suite and personalized dashboard.
+        </div>
+
+        <form id="signup-form">
+          <div class="form-group" style="margin-bottom:10px;">
+            <label class="form-label">Full Name</label>
+            <input id="su-name" type="text" class="form-control" placeholder="e.g. Sarah Jenkins" required>
+          </div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label class="form-label">Email Address</label>
+            <input id="su-email" type="email" class="form-control" placeholder="e.g. sarah@hotel.com" required>
+          </div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label class="form-label">Username</label>
+            <input id="su-username" type="text" class="form-control" placeholder="e.g. sjenkins" required>
+          </div>
+          <div class="form-group" style="margin-bottom:10px;">
+            <label class="form-label">Account Role</label>
+            <select id="su-role" class="form-control">
+              <option value="User">User (Analyst)</option>
+              <option value="Administrator">Administrator</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:18px;">
+            <label class="form-label">Password (Min. 4 characters)</label>
+            <input id="su-pwd" type="password" class="form-control" placeholder="Choose a secure password" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;">Create Account & Sign In</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/static/js/api.js"></script>
+  <script src="/static/js/charts.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
+

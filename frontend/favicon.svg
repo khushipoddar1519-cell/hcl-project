@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#080e1e"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="hotelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#0d9488"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Luxury Badge Base -->
+  <rect width="100" height="100" rx="22" fill="url(#bg)"/>
+  <rect x="2" y="2" width="96" height="96" rx="20" fill="none" stroke="url(#gold)" stroke-width="2" opacity="0.6"/>
+
+  <!-- 5 Gold Luxury Stars -->
+  <g fill="url(#gold)">
+    <!-- Star 1 -->
+    <path d="M 23 18 L 24 21 L 27 21 L 24.5 23 L 25.5 26 L 23 24 L 20.5 26 L 21.5 23 L 19 21 L 22 21 Z" />
+    <!-- Star 2 -->
+    <path d="M 36 15 L 37 18 L 40 18 L 37.5 20 L 38.5 23 L 36 21 L 33.5 23 L 34.5 20 L 32 18 L 35 18 Z" />
+    <!-- Star 3 (Center) -->
+    <path d="M 50 12 L 51.5 16 L 56 16 L 52.5 19 L 54 23 L 50 20.5 L 46 23 L 47.5 19 L 44 16 L 48.5 16 Z" />
+    <!-- Star 4 -->
+    <path d="M 64 15 L 65 18 L 68 18 L 65.5 20 L 66.5 23 L 64 21 L 61.5 23 L 62.5 20 L 60 18 L 63 18 Z" />
+    <!-- Star 5 -->
+    <path d="M 77 18 L 78 21 L 81 21 L 78.5 23 L 79.5 26 L 77 24 L 74.5 26 L 75.5 23 L 73 21 L 76 21 Z" />
+  </g>
+
+  <!-- Grand Hotel Architecture -->
+  <path d="M 24 38 L 50 25 L 76 38 L 76 83 L 24 83 Z" fill="url(#hotelGrad)"/>
+  <!-- Roof Cornice -->
+  <polygon points="21,39 50,23 79,39 76,42 50,27 24,42" fill="url(#gold)"/>
+  
+  <!-- Windows Grid -->
+  <!-- Floor 3 -->
+  <rect x="29" y="44" width="7" height="7" rx="1.5" fill="#fef08a"/>
+  <rect x="40" y="44" width="7" height="7" rx="1.5" fill="#fef08a"/>
+  <rect x="53" y="44" width="7" height="7" rx="1.5" fill="#fef08a"/>
+  <rect x="64" y="44" width="7" height="7" rx="1.5" fill="#fef08a"/>
+
+  <!-- Floor 2 -->
+  <rect x="29" y="55" width="7" height="7" rx="1.5" fill="#fef08a"/>
+  <rect x="40" y="55" width="7" height="7" rx="1.5" fill="#fef08a"/>
+  <rect x="53" y="55" width="7" height="7" rx="1.5" fill="#fef08a"/>
+  <rect x="64" y="55" width="7" height="7" rx="1.5" fill="#fef08a"/>
+
+  <!-- Hotel Entrance Canopy (Awning) -->
+  <path d="M 36 68 L 64 68 L 67 74 L 33 74 Z" fill="url(#gold)"/>
+  <!-- Canopy Stripes -->
+  <line x1="42" y1="68" x2="40" y2="74" stroke="#78350f" stroke-width="1.5"/>
+  <line x1="50" y1="68" x2="50" y2="74" stroke="#78350f" stroke-width="1.5"/>
+  <line x1="58" y1="68" x2="60" y2="74" stroke="#78350f" stroke-width="1.5"/>
+
+  <!-- Grand Entrance Doorway -->
+  <path d="M 43 83 L 43 75 Q 50 72 57 75 L 57 83 Z" fill="#0f172a"/>
+  <line x1="50" y1="74" x2="50" y2="83" stroke="#fbbf24" stroke-width="1"/>
+
+  <!-- Hotel Base / Steps -->
+  <rect x="18" y="83" width="64" height="4" rx="1.5" fill="url(#gold)"/>
+</svg>
+
